@@ -14,7 +14,7 @@ public class BookPO {
 
     private Long id;
 
-    private String desc;
+    private String description;
 
     private String downloadLink;
 

@@ -4,7 +4,7 @@
     <!--auto generated Code-->
     <resultMap id="AllColumnMap" type="com.yishu.server.model.po.BookPO">
         <result column="id" property="id"/>
-        <result column="desc" property="desc"/>
+        <result column="description" property="description"/>
         <result column="download_link" property="downloadLink"/>
         <result column="category" property="category"/>
         <result column="title" property="title"/>
@@ -12,10 +12,11 @@
         <result column="rate" property="rate"/>
     </resultMap>
 
+    
     <!--auto generated Code-->
     <sql id="all_column">
         `id`,
-        `desc`,
+        `description`,
         `download_link`,
         `category`,
         `title`,
@@ -23,11 +24,20 @@
         `rate`
     </sql>
 
+
+    <sql id="table">book</sql>
+
+    <select id="getByIndex" resultMap="AllColumnMap">
+        select <include refid="all_column"/>
+        from <include refid="table"/>
+        limit #{beginIndex},#{endIndex};
+    </select>
+
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO book_p_o (
+        INSERT INTO book (
             `id`,
-            `desc`,
+            `description`,
             `download_link`,
             `category`,
             `title`,
@@ -35,7 +45,7 @@
             `rate`
         ) VALUES (
             #{pojo.id},
-            #{pojo.desc},
+            #{pojo.description},
             #{pojo.downloadLink},
             #{pojo.category},
             #{pojo.title},
@@ -46,10 +56,10 @@
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO book_p_o
+        INSERT INTO book
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null"> `id`,</if>
-            <if test="pojo.desc!=null"> `desc`,</if>
+            <if test="pojo.description!=null"> `description`,</if>
             <if test="pojo.downloadLink!=null"> `download_link`,</if>
             <if test="pojo.category!=null"> `category`,</if>
             <if test="pojo.title!=null"> `title`,</if>
@@ -59,7 +69,7 @@
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null">#{pojo.id},</if>
-            <if test="pojo.desc!=null">#{pojo.desc},</if>
+            <if test="pojo.description!=null">#{pojo.description},</if>
             <if test="pojo.downloadLink!=null">#{pojo.downloadLink},</if>
             <if test="pojo.category!=null">#{pojo.category},</if>
             <if test="pojo.title!=null">#{pojo.title},</if>
@@ -70,13 +80,13 @@
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO book_p_o (
+        INSERT INTO book (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
             (
             #{pojo.id},
-            #{pojo.desc},
+            #{pojo.description},
             #{pojo.downloadLink},
             #{pojo.category},
             #{pojo.title},
@@ -88,10 +98,10 @@
 
     <!--auto generated Code-->
     <update id="update">
-        UPDATE book_p_o
+        UPDATE book
         <set>
             <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
-            <if test="pojo.desc != null"> `desc` = #{pojo.desc}, </if>
+            <if test="pojo.description != null"> `description` = #{pojo.description}, </if>
             <if test="pojo.downloadLink != null"> `download_link` = #{pojo.downloadLink}, </if>
             <if test="pojo.category != null"> `category` = #{pojo.category}, </if>
             <if test="pojo.title != null"> `title` = #{pojo.title}, </if>
